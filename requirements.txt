@@ -1,0 +1,2 @@
+selenium
+webdriver-manager==3.5.4
