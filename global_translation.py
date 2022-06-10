@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from json import dump
 import time
@@ -27,10 +28,12 @@ else:
 global_translation = {}
 base_url = "https://translate.google.com"
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")
+service = Service(executable_path=ChromeDriverManager().install())
 
-driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+options = Options()
+options.add_argument("--headless")
+
+driver = webdriver.Chrome(service=service, options=options)
 driver.get(base_url)
 
 Lbtn = driver.find_element("xpath", "//*[@id='yDmH0d']/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[1]/c-wiz/div[1]/c-wiz/div[2]/button")
